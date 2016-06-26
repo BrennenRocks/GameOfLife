@@ -1,0 +1,59 @@
+
+//		private JTextField textFieldRandom;
+//		private int input;
+//		private JLabel lblHowManyRandom;
+		
+//		JButton btnSetRandom = new JButton("Set Random Parameters");
+//		JDialog randomDialog = new RandomDialog();
+//		btnSetRandom.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				randomDialog.setLocation(getX() + 100, getY() + 100);
+//				randomDialog.setVisible(true);
+//			}
+//		});
+//		pnlSouth.add(btnSetRandom);
+		
+		//OLD RANDOM BUTTON
+
+//
+//		lblHowManyRandom = new JLabel("How many random?");
+//		pnlSouth.add(lblHowManyRandom);
+//
+//		textFieldRandom = new JTextField();
+//		textFieldRandom.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				String stringInput = textFieldRandom.getText();
+//				input = Integer.parseInt(stringInput);
+//				lblHowManyRandom.setText(stringInput);
+//			}
+//		});
+//		textFieldRandom.setColumns(5);
+//		pnlSouth.add(textFieldRandom);
+//
+//		JButton btnOfCells = new JButton("# of Cells");
+//		btnOfCells.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				resetCells();
+//				int count = 1;
+//				do {
+//					for (int i = 0; i < cells.length; i++) {
+//						for (int j = 0; j < cells[i].length; j++) {
+//							if (!cells[i][j].isAlive()) {
+//								if (rand.nextInt(150) == 1) {
+//									cells[i][j].setAlive();
+//									count++;
+//								} else {
+//									cells[i][j].setDead();
+//								}
+//								if (count >= input) {
+//									i = cells.length - 1;
+//									j = cells[i].length - 1;
+//								}
+//							}
+//						}
+//					}
+//				} while (count <= input);
+//			}
+//		});
+//		pnlSouth.add(btnOfCells);
