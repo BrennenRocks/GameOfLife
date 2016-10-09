@@ -162,7 +162,7 @@ public class GameOfLifeGui extends JFrame {
 		JPanel pnlCustom = new JPanel();
 		pnlCustom.setLayout(new GridLayout(4, 1, 5, 5));
 		
-		JLabel titleLabel = new JLabel("Enter a number betweetn 5-60");
+		JLabel titleLabel = new JLabel("Enter a number between 5-60");
 		pnlCustom.add(titleLabel);
 		
 		JTextField customSize = createCustomSize();

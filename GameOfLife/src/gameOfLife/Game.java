@@ -101,229 +101,42 @@ public class Game {
 
 	}
 	
-	private void updateNewCells() {
-		for (int row = 0; row < tempCells.length; row++) {
-			for (int column = 0; column < tempCells[row].length; column++) {
-				if (row == 0) {
-					if (column == 0) {
-						int count = 0;
-						for (int i = row; i <= row + 1; i++) {
-							for (int j = column; j <= column + 1; j++) {
-								if (tempCells[i][j] == true) {
-									count++;
-								}
-							}
-						}
-						if (tempCells[row][column] == true) {
-							if (count != 3 && count != 4) {
-								cells[row][column].setDead();
-							} else {
-								cells[row][column].setAlive();
-							}
-						} else if (tempCells[row][column] == false) {
-							if (count == 3) {
-								cells[row][column].setAlive();
-							} else {
-								cells[row][column].setDead();
-							}
-						}
-
-					} else if (column != 0
-							&& column != tempCells[row].length - 1) {
-						int count = 0;
-						for (int i = row; i <= row + 1; i++) {
-							for (int j = column - 1; j <= column + 1; j++) {
-								if (tempCells[i][j] == true) {
-									count++;
-								}
-							}
-						}
-						if (tempCells[row][column] == true) {
-							if (count != 3 && count != 4) {
-								cells[row][column].setDead();
-							} else {
-								cells[row][column].setAlive();
-							}
-						} else if (tempCells[row][column] == false) {
-							if (count == 3) {
-								cells[row][column].setAlive();
-							} else {
-								cells[row][column].setDead();
-							}
-						}
-					} else if (column == tempCells[row].length - 1) {
-						int count = 0;
-						for (int i = row; i <= row + 1; i++) {
-							for (int j = column - 1; j <= column; j++) {
-								if (tempCells[i][j] == true) {
-									count++;
-								}
-							}
-						}
-						if (tempCells[row][column] == true) {
-							if (count != 3 && count != 4) {
-								cells[row][column].setDead();
-							} else {
-								cells[row][column].setAlive();
-							}
-						} else if (tempCells[row][column] == false) {
-							if (count == 3) {
-								cells[row][column].setAlive();
-							} else {
-								cells[row][column].setDead();
-							}
+	
+	private void updateNewCells(){
+		int count = 0, i = 0, j = 0;
+		for(int r = 0; r < tempCells.length; r++){
+			for(int c = 0; c < tempCells[r].length; c++){
+				for(int rd = -1; rd <= 1; rd++){
+					for(int cd = -1; cd <= 1; cd++){
+						if(rd != 0 || cd != 0){
+							i = r + rd;
+							j = c + cd;
+							if((i >= 0 && j >= 0 && i < tempCells.length && j < tempCells[r].length) && tempCells[i][j]){
+								count++;
+							}						
 						}
 					}
 				}
-				if (row != 0 && row != tempCells.length - 1) {
-					if (column == 0) {
-						int count = 0;
-						for (int i = row - 1; i <= row + 1; i++) {
-							for (int j = column; j <= column + 1; j++) {
-								if (tempCells[i][j] == true) {
-									count++;
-								}
-							}
-						}
-						if (tempCells[row][column] == true) {
-							if (count != 3 && count != 4) {
-								cells[row][column].setDead();
-							} else {
-								cells[row][column].setAlive();
-							}
-						} else if (tempCells[row][column] == false) {
-							if (count == 3) {
-								cells[row][column].setAlive();
-							} else {
-								cells[row][column].setDead();
-							}
-						}
-					} else if (column != 0
-							&& column != tempCells[row].length - 1) {
-						int count = 0;
-						for (int i = row - 1; i <= row + 1; i++) {
-							for (int j = column - 1; j <= column + 1; j++) {
-								if (tempCells[i][j] == true) {
-									count++;
-								}
-							}
-						}
-						if (tempCells[row][column] == true) {
-							if (count != 3 && count != 4) {
-								cells[row][column].setDead();
-							} else {
-								cells[row][column].setAlive();
-							}
-						} else if (tempCells[row][column] == false) {
-							if (count == 3) {
-								cells[row][column].setAlive();
-							} else {
-								cells[row][column].setDead();
-							}
-						}
-					} else if (column == tempCells[row].length - 1) {
-						int count = 0;
-						for (int i = row - 1; i <= row + 1; i++) {
-							for (int j = column - 1; j <= column; j++) {
-								if (tempCells[i][j] == true) {
-									count++;
-								}
-							}
-						}
-						if (tempCells[row][column] == true) {
-							if (count != 3 && count != 4) {
-								cells[row][column].setDead();
-							} else {
-								cells[row][column].setAlive();
-							}
-						} else if (tempCells[row][column] == false) {
-							if (count == 3) {
-								cells[row][column].setAlive();
-							} else {
-								cells[row][column].setDead();
-							}
-						}
+				if (tempCells[r][c]){
+					//Should it die
+					if (count != 2 && count != 3){
+						cells[r][c].setDead();
+					}
+				} else{
+					//Should it come alive
+					if (count == 3){
+						cells[r][c].setAlive();
 					}
 				}
-				if (row == tempCells.length - 1) {
-					if (column == 0) {
-						int count = 0;
-						for (int i = row - 1; i <= row; i++) {
-							for (int j = column; j <= column + 1; j++) {
-								if (tempCells[i][j] == true) {
-									count++;
-								}
-							}
-						}
-						if (tempCells[row][column] == true) {
-							if (count != 3 && count != 4) {
-								cells[row][column].setDead();
-							} else {
-								cells[row][column].setAlive();
-							}
-						} else if (tempCells[row][column] == false) {
-							if (count == 3) {
-								cells[row][column].setAlive();
-							} else {
-								cells[row][column].setDead();
-							}
-						}
-					} else if (column != 0
-							&& column != tempCells[row].length - 1) {
-						int count = 0;
-						for (int i = row - 1; i <= row; i++) {
-							for (int j = column - 1; j <= column + 1; j++) {
-								if (tempCells[i][j] == true) {
-									count++;
-								}
-							}
-						}
-						if (tempCells[row][column] == true) {
-							if (count != 3 && count != 4) {
-								cells[row][column].setDead();
-							} else {
-								cells[row][column].setAlive();
-							}
-						} else if (tempCells[row][column] == false) {
-							if (count == 3) {
-								cells[row][column].setAlive();
-							} else {
-								cells[row][column].setDead();
-							}
-						}
-					} else if (column == tempCells[row].length - 1) {
-						int count = 0;
-						for (int i = row - 1; i <= row; i++) {
-							for (int j = column - 1; j <= column; j++) {
-								if (tempCells[i][j] == true) {
-									count++;
-								}
-							}
-						}
-						if (tempCells[row][column] == true) {
-							if (count != 3 && count != 4) {
-								cells[row][column].setDead();
-							} else {
-								cells[row][column].setAlive();
-							}
-						} else if (tempCells[row][column] == false) {
-							if (count == 3) {
-								cells[row][column].setAlive();
-							} else {
-								cells[row][column].setDead();
-							}
-						}
-					}
-				}
+				count = 0;
 			}
 		}
-
 	}
 
 	private void updateTempCells() {
 		for (int i = 0; i < tempCells.length; i++) {
 			for (int j = 0; j < tempCells[i].length; j++) {
-				if (cells[i][j].isAlive() == true) {
+				if (cells[i][j].isAlive()) {
 					tempCells[i][j] = true;
 				} else {
 					tempCells[i][j] = false;
@@ -335,7 +148,7 @@ public class Game {
 	private void updateTempSaveCells() {
 		for (int i = 0; i < tempCells.length; i++) {
 			for (int j = 0; j < tempCells[i].length; j++) {
-				if (cells[i][j].isAlive() == true) {
+				if (cells[i][j].isAlive()) {
 					tempSaveCells[i][j] = true;
 				} else {
 					tempSaveCells[i][j] = false;
@@ -368,6 +181,9 @@ public class Game {
 		return dead;
 	}
 
+	/**
+	 * Load the current size's saved cells
+	 */
 	public void load() {
 		resetCells();
 		try (BufferedReader reader = new BufferedReader(new FileReader("src/gameOfLife/"+filePath))){
@@ -386,7 +202,7 @@ public class Game {
 			}
 			for (int k = 0; k < tempCells.length; k++) {
 				for (int j = 0; j < tempCells[k].length; j++) {
-					if (tempCells[k][j] == true) {
+					if (tempCells[k][j]) {
 						cells[k][j].setAlive();
 					} else {
 						cells[k][j].setDead();
@@ -398,11 +214,14 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Save the current size's cells
+	 */
 	public void save() {
 		try (PrintWriter writer = new PrintWriter("src/gameOfLife/"+filePath)){
+			updateTempSaveCells();
 			for(int i = 0; i < tempSaveCells.length; i++){
 				for(int j = 0; j < tempSaveCells[i].length; j++){
-					updateTempSaveCells();
 					writer.printf((tempSaveCells[i][j] ? "true," : "false,"));
 				}
 				writer.println();
